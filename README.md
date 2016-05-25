@@ -16,28 +16,28 @@
 
 # <a name="w1d3"></a> Data Modeling and Classes
 
-# <a name="wd"></a> Data Structures and Complexity Analysis
+# <a name="w1d5"></a> Data Structures and Complexity Analysis
 
-# <a name="wd"></a> Inheritance Patterns
+# <a name="w2d1"></a> Inheritance Patterns
 
-# <a name="wd"></a> Algorithms
+# <a name="w2d3"></a> Algorithms
 
-# <a name="wd"></a> D3
+# <a name="w2d5"></a> D3
 
-# <a name="wd"></a> Browser apps, jQuery, and AJAX
+# <a name="w3d1"></a> Browser apps, jQuery, and AJAX
 
-# <a name="wd"></a> Frameworks, MVC, and Backbone
+# <a name="w3d3"></a> Frameworks, MVC, and Backbone
 
-# <a name="wd"></a> ES6, APIs, and React
+# <a name="w3d5"></a> ES6, APIs, and React
 
-# <a name="wd"></a> Servers and Node
+# <a name="w4d1"></a> Servers and Node
 
-# <a name="wd"></a> Server-side Techniques
+# <a name="w4d3"></a> Server-side Techniques
 
-# <a name="wd"></a> Databases
+# <a name="w4d5"></a> Databases
 
-# <a name="wd"></a> Authentication
+# <a name="w5d1"></a> Authentication
 
-# <a name="wd"></a> Deployment
+# <a name="w5d3"></a> Deployment
 
-# <a name="wd"></a> Angular
+# <a name="w5d5"></a> Angular
