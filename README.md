@@ -55,14 +55,12 @@ class Car extends Vehicle {
   }
   // , <-- wrong
   // note: no commas b/w functions in class definition
-  empty() {
-    /* ... */
+  drive() {
+    // Exists at `Car.prototype.drive`
   }
   static maintenance(car) {
-    /*
-    Using `static` attaches a method to the class function:
-    Car.maintenance()
-    */
+    // `static` attaches a method to the class function:
+    // Car.maintenance()
   }
 }
 ```
