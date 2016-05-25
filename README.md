@@ -56,10 +56,10 @@ class Car extends Vehicle {
   // , <-- wrong
   // note: no commas b/w functions in class definition
   drive() {
-    // Exists at `Car.prototype.drive`
+    // instance.drive()
+    // Car.prototype.drive()
   }
   static maintenance(car) {
-    // `static` attaches a method to the class function:
     // Car.maintenance()
   }
 }
