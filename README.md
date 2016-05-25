@@ -1,4 +1,4 @@
-# ssa-snippets
+# <a name="top"></a> Summary SA Snippets
 * [W1 D3 - Data Modeling and Classes](#w1d3)
 * [W1 D5 - Data Structures and Complexity Analysis](#w1d5)
 * [W2 D1 - Inheritance Patterns](#w2d1)
@@ -15,29 +15,55 @@
 * [W5 D5 - Angular](#w5d5)
 
 # <a name="w1d3"></a> Data Modeling and Classes
+[index](#top)
+
 
 # <a name="w1d5"></a> Data Structures and Complexity Analysis
+[index](#top)
+
 
 # <a name="w2d1"></a> Inheritance Patterns
+[index](#top)
+
 
 # <a name="w2d3"></a> Algorithms
+[index](#top)
+
 
 # <a name="w2d5"></a> D3
+[index](#top)
+
 
 # <a name="w3d1"></a> Browser apps, jQuery, and AJAX
+[index](#top)
+
 
 # <a name="w3d3"></a> Frameworks, MVC, and Backbone
+[index](#top)
+
 
 # <a name="w3d5"></a> ES6, APIs, and React
+[index](#top)
+
 
 # <a name="w4d1"></a> Servers and Node
+[index](#top)
+
 
 # <a name="w4d3"></a> Server-side Techniques
+[index](#top)
+
 
 # <a name="w4d5"></a> Databases
+[index](#top)
+
 
 # <a name="w5d1"></a> Authentication
+[index](#top)
+
 
 # <a name="w5d3"></a> Deployment
+[index](#top)
+
 
 # <a name="w5d5"></a> Angular
