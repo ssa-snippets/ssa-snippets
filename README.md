@@ -75,6 +75,42 @@ class Car extends Vehicle {
 # <a name="w4d5"></a> Databases
 [index](#top)
 
+## Data relationships
+* **1:1**: Reference in either table to element in the other
+* **1:many**: Reference in the *many* table the *one*.
+* **many:many**: Two column **join table**.
+
+Eric's example:
+
+## SQL: Structured Query Language
+Usage example:
+```sql
+CREATE DATABASE Company;
+
+USE Company;
+
+CREATE TABLE Employees (
+  first varchar(15),
+  last varchar(20),
+  title varchar(50),
+  age smallint(3),
+  salary decimal(25,2)
+);
+
+SHOW databases;
+SHOW tables;
+DESCRIBE employees
+
+INSERT INTO employees
+  (first, last, title, age, salary)
+  VALUES ('Dirk', 'Smith', 'Programmer II', 45, 75020.00);
+
+SELECT * FROM Employees
+  WHERE salary > 30000;
+
+SELECT first, last, salary FROM Employees 
+  WHERE title LIKE '%Programmer%';
+```
 
 # <a name="w5d1"></a> Authentication
 [index](#top)
