@@ -45,7 +45,27 @@
 # <a name="w3d5"></a> ES6, APIs, and React
 [index](#top)
 
-
+ES6 `class` syntax:
+```js
+class Car extends Vehicle {
+  constructor(props) {
+    // omitting super => Error!
+    super(props);
+    this.interior = 'leather';
+  }
+  // , <-- wrong
+  // note: no commas b/w functions in class definition
+  empty() {
+    /* ... */
+  }
+  static maintenance(car) {
+    /*
+    Using `static` attaches a method to the class function:
+    Car.maintenance()
+    */
+  }
+}
+```
 # <a name="w4d1"></a> Servers and Node
 [index](#top)
 
