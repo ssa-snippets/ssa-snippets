@@ -17,6 +17,26 @@
 # <a name="w1d3"></a> Data Modeling and Classes
 [index](#top)
 
+Functional Class Inheritance
+'''js
+var Car = function( loc ) {
+  var obj = { loc: loc };
+  obj.move = function() { obj.loc++; };
+  return obj;
+}
+
+var Van = function( loc ) {
+  var obj = Car( loc );
+  obj.grab = function() {...};
+  return obj;
+};
+
+var Cop = function( loc ){
+  var obj = Car( loc );
+  obj.grab = function(){...};
+  return obj;
+}
+'''
 
 # <a name="w1d5"></a> Data Structures and Complexity Analysis
 [index](#top)
