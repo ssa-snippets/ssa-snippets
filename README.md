@@ -18,7 +18,7 @@
 [index](#top)
 
 Functional Class Inheritance
-'''js
+```js
 var Car = function( loc ) {
   var obj = { loc: loc };
   obj.move = function() { obj.loc++; };
@@ -36,7 +36,7 @@ var Cop = function( loc ){
   obj.grab = function(){...};
   return obj;
 }
-'''
+```
 
 # <a name="w1d5"></a> Data Structures and Complexity Analysis
 [index](#top)
