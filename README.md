@@ -7,7 +7,7 @@
 * [W3 D1 - Browser apps, jQuery, and AJAX](#w3d1)
 * [W3 D3 - Frameworks, MVC, and Backbone](#w3d3)
 * [W3 D5 - ES6, APIs, and React](#w3d5)
-* [W4 D1 - Servers and Node](#w4d1)
+* [W4 D1 - Servers and Node (Express)](#w4d1)
 * [W4 D3 - Server-side Techniques](#w4dd)
 * [W4 D5 - Databases](#w4d5)
 * [W5 D1 - Authentication](#w5d1)
@@ -17,6 +17,69 @@
 # <a name="w1d3"></a> Data Modeling and Classes
 [index](#top)
 
+Functional Class Inheritance
+```js
+var Car = function( loc ) {
+  var obj = { loc: loc };
+  obj.move = function() { obj.loc++; };
+  return obj;
+}
+
+var Van = function( loc ) {
+  var obj = Car( loc );
+  obj.grab = function() {...};
+  return obj;
+};
+
+var Cop = function( loc ){
+  var obj = Car( loc );
+  obj.grab = function(){...};
+  return obj;
+}
+```
+
+Functional Shared Class
+```js
+var Car = function( loc ) {
+  var obj = {};
+  obj.loc = loc;
+  extend( obj, Car.methods );
+  return obj;
+};
+
+Car.methods = {
+  move: function() { this.loc++; };
+}
+```
+
+Prototypal Class
+```js
+var Car = function( loc ) {
+  var obj = Object.create( Car. prototype );
+  obj.loc = loc;
+  return obj;
+}
+
+Car.prototype.move = function { this.loc++; };
+```
+
+Pseudoclassical Inheritance
+```js
+var Car = function( loc ){
+  this.loc = loc;
+}
+
+Car.prototype.move = function() { this.loc++ };
+
+var Van = function( loc ) {
+  Car.call( this, loc );
+  this.loc = loc;
+}
+
+Van.prototype = Object.create( Car.prototype );
+Van.prototype.constructor = Van;
+Van.prototype.grab = function() {...};
+```
 
 # <a name="w1d5"></a> Data Structures and Complexity Analysis
 [index](#top)
@@ -177,9 +240,49 @@ ReactDOM.render(<App />, document.getElementById('app'));
 ## Special form methods
 * `onChange`. [Docs](https://facebook.github.io/react/docs/forms.html#controlled-components).
 
-# <a name="w4d1"></a> Servers and Node
+
+# <a name="w4d1"></a> Servers and Node (Express)
 [index](#top)
 
+Sample index.js for creating a simple node server using Express.
+Included some basic/helpful middleware you will likely use.
+
+```js
+var express = require('express');
+var morgan = require('morgan');
+var bodyParser = require('body-parser');
+
+var app = express();
+
+//Middleware template
+app.use(function(req, res, next){
+  next();
+});
+
+//Server logger
+app.use(morgan('dev'));
+
+//Parses a the request to be handles as a plain object
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+
+//Serves up your public/client folder
+app.use(express.static('./client'));
+
+//Sample routing
+app.route('/')
+  .get(function(req, res){
+    res.send("Hello World");
+  })
+  .post()
+  .put()
+  .delete();
+
+
+app.listen(8000, function(){
+  console.log('server is now listening on port 8000.');
+});
+```
 
 # <a name="w4d3"></a> Server-side Techniques
 [index](#top)
