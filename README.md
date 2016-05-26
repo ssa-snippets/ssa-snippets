@@ -19,66 +19,66 @@
 
 Functional Class Inheritance
 ```js
-var Car = function( loc ) {
-  var obj = { loc: loc };
-  obj.move = function() { obj.loc++; };
+var Car = function(loc) {
+  var obj = {loc: loc};
+  obj.move = function() {obj.loc++;};
   return obj;
 }
 
-var Van = function( loc ) {
-  var obj = Car( loc );
-  obj.grab = function() {...};
+var Van = function(loc) {
+  var obj = Car(loc);
+  obj.grab = function() {/*...*/};
   return obj;
 };
 
-var Cop = function( loc ){
-  var obj = Car( loc );
-  obj.grab = function(){...};
+var Cop = function(loc){
+  var obj = Car(loc);
+  obj.grab = function(){/*...*/};
   return obj;
 }
 ```
 
 Functional Shared Class
 ```js
-var Car = function( loc ) {
+var Car = function(loc) {
   var obj = {};
   obj.loc = loc;
-  extend( obj, Car.methods );
+  extend(obj, Car.methods);
   return obj;
 };
 
 Car.methods = {
-  move: function() { this.loc++; };
-}
+  move: function() {this.loc++;};
+};
 ```
 
 Prototypal Class
 ```js
-var Car = function( loc ) {
-  var obj = Object.create( Car. prototype );
+var Car = function(loc) {
+  var obj = Object.create(Car. prototype);
   obj.loc = loc;
   return obj;
-}
+};
 
-Car.prototype.move = function { this.loc++; };
+Car.prototype.move = function {this.loc++;};
 ```
 
 Pseudoclassical Inheritance
 ```js
-var Car = function( loc ){
+var Car = function(loc){
   this.loc = loc;
-}
+};
 
-Car.prototype.move = function() { this.loc++ };
+Car.prototype.move = function() {this.loc++};
 
-var Van = function( loc ) {
-  Car.call( this, loc );
+var Van = function(loc) {
+  Car.call(this, loc);
   this.loc = loc;
-}
+};
 
-Van.prototype = Object.create( Car.prototype );
+Van.prototype = Object.create(Car.prototype);
 Van.prototype.constructor = Van;
-Van.prototype.grab = function() {...};
+Van.prototype.grab = function() {/*...*/};
 ```
 
 # <a name="w1d5"></a> Data Structures and Complexity Analysis
@@ -108,7 +108,22 @@ Van.prototype.grab = function() {...};
 # <a name="w3d5"></a> ES6, APIs, and React
 [index](#top)
 
-ES6 `class` syntax:
+## Babel transpiler
+Babel compilation command:
+```sh
+babel path/to/source --out-dir path/to/target --presets=es2015,react,stage-2 --ignore=node_modules,compiled --source-maps inline --watch
+```
+
+Required dependencies:
+```js
+"devDependencies": {
+  "babel-preset-es2015": "",
+  "babel-preset-react": "",
+  "babel-preset-stage-2": ""
+}
+```
+
+## ES6 class syntax:
 ```js
 class Car extends Vehicle {
   constructor(props) {
@@ -116,8 +131,7 @@ class Car extends Vehicle {
     super(props);
     this.interior = 'leather';
   }
-  // , <-- wrong
-  // note: no commas b/w functions in class definition
+  // , <-- wrong: no commas b/w functions in class definition
   drive() {
     // instance.drive()
     // Car.prototype.drive()
@@ -127,14 +141,114 @@ class Car extends Vehicle {
   }
 }
 ```
+
+## React and JSX
+Function as a component:
+```js
+// function that returns a component
+var A = (props) => (
+  <div>
+    <p>Para1</p>
+    <p>Para2</p>
+  </div>
+);
+```
+
+Class as a component:
+```js
+class Credentials extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: '',
+      password: '',
+      show: false
+    };
+  }
+  handleSubmit(e) {
+    e.preventDefault();
+    var username = this.state.username.trim();
+    var password = this.state.password.trim();
+    if (!username || !password) {
+      return;
+    }
+    var url = store.getState().loginSignupType === 'login' ? '/login' : '/signup';
+    $.ajax({
+      url,
+      type: 'POST',
+      data: {username, password},
+      // data type expected back from server:
+      dataType: 'text',
+      success: function(favorites) {
+        // perform actions with favorites
+      },
+      error: function(xhr, status, err) {
+        // show error message;
+        console.error(url, status, err.toString());
+      }
+    });
+    store.dispatch({
+      type: 'SUBMITTING_CREDENTIALS'
+    });
+    this.setState({author: '', text: ''});
+  }
+  handleUsernameChange(e) {
+    this.setState({username: e.target.value});
+  }
+  handlePasswordChange(e) {
+    this.setState({password: e.target.value});
+  }
+  hide() {
+    this.setState({show: false});
+  };
+  render() {
+    return (
+      <div className="container">
+        <form className="loginSignup" onSubmit={this.handleSubmit.bind(this)}>
+          <input
+            onChange={this.handleUsernameChange.bind(this)}
+            placeholder="username"
+            type="text"
+            value={this.state.username}
+          />
+          <input
+            onChange={this.handlePasswordChange.bind(this)}
+            placeholder="password"
+            type="password"
+            value={this.state.password}
+          />
+          <input type="submit" value="Submit" />
+        </form>
+        <a onClick={this.hide.bind(this)}>Close</a>
+      </div>
+    );
+  }
+}
+```
+
+## Rendering basics
+Components rendered automatically with `setState` or with
+```js
+ReactDOM.render(<App />, document.getElementById('app'));
+```
+
+## Special class methods
+* `getInitialState`
+* `componentDidMount`
+* `componentWillUnmount`
+
+## Special form methods
+* `onChange`. [Docs](https://facebook.github.io/react/docs/forms.html#controlled-components).
+
+
 # <a name="w4d1"></a> Servers and Node (Express)
 [index](#top)
 
 Sample index.js for creating a simple node server using Express.
 Included some basic/helpful middleware you will likely use.
 
-```
-var express = require('express'); 
+```js
+var express = require('express');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 
@@ -210,10 +324,14 @@ INSERT INTO employees
 SELECT * FROM Employees
   WHERE salary > 30000;
 
-SELECT first, last, salary FROM Employees 
+SELECT first, last, salary FROM Employees
   WHERE title LIKE '%Programmer%';
 ```
 
+## Mongoose
+Defining database connection. **Must require `db` in another file**
+
+Schema
 # <a name="w5d1"></a> Authentication
 [index](#top)
 
