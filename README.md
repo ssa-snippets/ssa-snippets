@@ -37,6 +37,23 @@ var Cop = function( loc ){
   return obj;
 }
 ```
+Pseudoclassical Inheritance
+```js
+var Car = function( loc ){
+  this.loc = loc;
+}
+
+Car.prototype.move = function() { this.loc++ };
+
+var Van = function( loc ) {
+  Car.call( this, loc );
+  this.loc = loc;
+}
+
+Van.prototype = Object.create( Car.prototype );
+Van.prototype.constructor = Van;
+Van.prototype.grab = function() {...};
+```
 
 # <a name="w1d5"></a> Data Structures and Complexity Analysis
 [index](#top)
