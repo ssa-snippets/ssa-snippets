@@ -37,6 +37,32 @@ var Cop = function( loc ){
   return obj;
 }
 ```
+
+Functional Shared Class
+```js
+var Car = function( loc ) {
+  var obj = {};
+  obj.loc = loc;
+  extend( obj, Car.methods );
+  return obj;
+};
+
+Car.methods = {
+  move: function() { this.loc++; };
+}
+```
+
+Prototypal Class
+```js
+var Car = function( loc ) {
+  var obj = Object.create( Car. prototype );
+  obj.loc = loc;
+  return obj;
+}
+
+Car.prototype.move = function { this.loc++; };
+```
+
 Pseudoclassical Inheritance
 ```js
 var Car = function( loc ){
