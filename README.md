@@ -19,66 +19,66 @@
 
 Functional Class Inheritance
 ```js
-var Car = function( loc ) {
-  var obj = { loc: loc };
-  obj.move = function() { obj.loc++; };
+var Car = function(loc) {
+  var obj = {loc: loc};
+  obj.move = function() {obj.loc++;};
   return obj;
 }
 
-var Van = function( loc ) {
-  var obj = Car( loc );
-  obj.grab = function() {...};
+var Van = function(loc) {
+  var obj = Car(loc);
+  obj.grab = function() {/*...*/};
   return obj;
 };
 
-var Cop = function( loc ){
-  var obj = Car( loc );
-  obj.grab = function(){...};
+var Cop = function(loc){
+  var obj = Car(loc);
+  obj.grab = function(){/*...*/};
   return obj;
 }
 ```
 
 Functional Shared Class
 ```js
-var Car = function( loc ) {
+var Car = function(loc) {
   var obj = {};
   obj.loc = loc;
-  extend( obj, Car.methods );
+  extend(obj, Car.methods);
   return obj;
 };
 
 Car.methods = {
-  move: function() { this.loc++; };
-}
+  move: function() {this.loc++;};
+};
 ```
 
 Prototypal Class
 ```js
-var Car = function( loc ) {
-  var obj = Object.create( Car. prototype );
+var Car = function(loc) {
+  var obj = Object.create(Car. prototype);
   obj.loc = loc;
   return obj;
-}
+};
 
-Car.prototype.move = function { this.loc++; };
+Car.prototype.move = function {this.loc++;};
 ```
 
 Pseudoclassical Inheritance
 ```js
-var Car = function( loc ){
+var Car = function(loc){
   this.loc = loc;
-}
+};
 
-Car.prototype.move = function() { this.loc++ };
+Car.prototype.move = function() {this.loc++};
 
-var Van = function( loc ) {
-  Car.call( this, loc );
+var Van = function(loc) {
+  Car.call(this, loc);
   this.loc = loc;
-}
+};
 
-Van.prototype = Object.create( Car.prototype );
+Van.prototype = Object.create(Car.prototype);
 Van.prototype.constructor = Van;
-Van.prototype.grab = function() {...};
+Van.prototype.grab = function() {/*...*/};
 ```
 
 # <a name="w1d5"></a> Data Structures and Complexity Analysis
@@ -330,8 +330,6 @@ SELECT first, last, salary FROM Employees
 
 ## Mongoose
 Defining database connection. **Must require `db` in another file**
-
-
 
 Schema
 # <a name="w5d1"></a> Authentication
