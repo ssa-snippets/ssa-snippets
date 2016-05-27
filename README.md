@@ -55,7 +55,7 @@ Car.methods = {
 Prototypal Class
 ```js
 var Car = function(loc) {
-  var obj = Object.create(Car. prototype);
+  var obj = Object.create(Car.prototype);
   obj.loc = loc;
   return obj;
 };
@@ -341,3 +341,63 @@ Schema
 
 
 # <a name="w5d5"></a> Angular
+Pipe syntax:
+```js
+{{displayMe | json}}
+array | filter:search
+```
+
+Events:
+```html
+<button ng-click="addTodo(newTodo);">add</button>
+```
+
+Element repetition:
+```html
+<div ng-repeat="car in parkingLot track by $index" ng-click="retrieve($index)">
+  {{$index + 1}}. {{car.plateNumber}}
+</div>
+```
+
+Conditional appearance:
+```html
+<div ng-if="!error">You were successful!</div>
+<div ng-hide="complete">Complete form before continuing</div>
+<div ng-show="distance > 5">Congrats! Great workout!</div>
+```
+
+## Factories and Services
+Can **not** use `$scope` in factory
+
+Extending scope with factory's properties:
+```js
+.controller('MainController', function($scope, Todos) {
+  angular.extend($scope, Todos);
+})
+```
+
+Requesting data over http:
+```js
+.factory('Reddit', function($http) {
+  var getData = function() {
+    return $http({
+      method: 'GET',
+      url: 'http://www.reddit.com/json'
+    })
+    .then(function(resp) {
+      return resp.data;
+    });
+  };
+
+  return {getData};
+});
+
+.controller('Name', function($scope, Reddit) {
+  $scope.getReddit = function() {
+    Reddit.getData()
+      .then(function(data) {
+        $scope.reddit = data;
+      });
+  };
+});
+```
