@@ -83,7 +83,40 @@ Van.prototype.grab = function() {/*...*/};
 
 # <a name="w1d5"></a> Data Structures and Complexity Analysis
 [index](#top)
+QUEUE (example shown in functional class)  
+[here](https://github.com/remotebeta/2016-04-data-structures/blob/solution/sprint-one/src/functional/queue.js)
+>A line at the DMV (first in - first out). Uses enqueue and dequeue. Great for issuing instructions to a robot/making steps.
 
+STACK (example shown in functional class)  
+[here] (https://github.com/remotebeta/2016-04-data-structures/blob/solution/sprint-one/src/functional/stack.js)
+>A stack of plates (last in - first out). Uses push and pop. Great for your browser's back button.
+
+BINARY-SEARCH TREE  
+[here](https://github.com/remotebeta/2016-04-data-structures/blob/solution/sprint-two/src/binarySearchTree.js)
+>A tree that can only have 0, 1, or 2 children. The child to the left is less than the node's value while the child to the right is greater. This structure results in fast operations. It'd be great for a dictionary of all English words.
+
+GRAPH  
+[here](https://github.com/remotebeta/2016-04-data-structures/blob/solution/sprint-two/src/graph.js)
+>Graphs consist of nodes (also called vertices) and edges (also called arcs) that connect the nodes. They are not hierarchical and can be undirected (the relationship of any 2 nodes connected by an edge is symmetrical) or directed (asymmetrical relationship between nodes). Graphs are great for representing how a collection of websites link together.
+
+HASHTABLE  
+[here](https://github.com/remotebeta/2016-04-data-structures/blob/solution/sprint-two/src/hashTable.js)
+
+  HASHTABLE HELPERS  
+  [here](https://github.com/remotebeta/2016-04-data-structures/blob/solution/sprint-two/src/hashTableHelpers.js)
+>Hash tables (aka Hash maps) store key value pairs. They use a hashing function to translate keys in to numerical indices. They can have values stored at the same value, but they likely will increase their size. They are great for making a contact list you might add to or remove from over time.
+
+LINKED LIST  
+[here](https://github.com/remotebeta/2016-04-data-structures/blob/solution/sprint-two/src/linkedList.js)
+>A linked list is a data structure that allows for constant tiem insertion and removal at any point in the linked list. However since they are not indexed, any find operation is linear time. Uses a Head and a Tail property as well as pointers. They would be great for an itinerary you expect to add/remove destinations to/from.
+
+SET  
+[here](https://github.com/remotebeta/2016-04-data-structures/blob/solution/sprint-two/src/set.js)
+>Sets contain unique values in no particular order. A set would be great for a raffle where all tickets are unique and you want to just randomly pick one.
+
+TREE  
+[here](https://github.com/remotebeta/2016-04-data-structures/blob/solution/sprint-two/src/tree.js)
+>A tree is a hierachical data structure consisting of nodes with (potentially) children. A tree is a recursive data structure as the children could have children and so on. A tree would be great for making a family tree
 
 # <a name="w2d1"></a> Inheritance Patterns
 [index](#top)
