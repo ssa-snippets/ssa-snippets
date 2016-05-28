@@ -364,6 +364,90 @@ SELECT first, last, salary FROM Employees
 ## Mongoose
 Defining database connection. **Must require `db` in another file**
 
+### db/config file:
+```
+var mongoose = require('mongoose');
+var SomeModel = require("./someModel.js");
+
+// Connect to Heroku db or local DB as defaults
+var url = process.env.MONGODB_URI || 'mongodb://localhost/someDB'
+
+// Connect to mongo db
+mongoose.connect(url);
+
+// Log the db connection status
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log('mongo connected!');
+});
+
+module.exports = mongoose;
+```
+### Sample Schema:
+```
+var mongoose = require('mongoose');
+
+var Schema = mongoose.Schema;
+
+//create schema for todo item
+var someSchema = new Schema({
+  task: {
+    type: String,
+    required: true
+  },
+  description: {
+    type: String,
+    required: true
+  },
+  completed: {
+    type: Boolean,
+    required: true
+  }
+});
+
+module.exports = mongoose.model('something', someSchema);
+```
+### Sample Request Handler
+```
+var db = require("../../db/db.js");
+var SomeModel = require("../../db/someModel.js");
+
+exports.retrieveTodos = function(req, res){
+  SomeModel.find({})
+  .then(function(pillows){
+    res.send(pillows);
+  })
+  .catch(function(err){
+    res.status(503).send(err);
+  });
+};
+
+exports.addTodo = function(req, res){
+  var someModel = new SomeModel({
+    task: req.body.task,
+    description: req.body.something,
+    completed: req.body.somethingElse 
+  });
+  todo.save()
+  .then(function(result){
+    res.send(result);
+  })
+  .catch(function(err){
+    res.status(503).send(err);
+  });
+};
+
+exports.clearDB = function(req, res){
+  SomeModel.remove({})
+  .then(function(){
+    res.send('cleared database');
+  })
+  .catch(function(err){
+    res.status(503).send(err);
+  });
+};
+```
 Schema
 # <a name="w5d1"></a> Authentication
 [index](#top)
