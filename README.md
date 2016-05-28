@@ -295,6 +295,17 @@ app.use(function(req, res, next){
 //Server logger
 app.use(morgan('dev'));
 
+// authentication
+var session = require('express-session');
+var bcrypt = require('bcrypt-nodejs');
+app.use(session({
+  // options
+  secret: 'Brent & Edu are building an amazing app!',
+  cookie: { maxAge: 60 * 1000 }, // 1 minute I believe
+  resave: true,
+  saveUninitialized: true
+}));
+
 //Parses a the request to be handles as a plain object
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -310,6 +321,43 @@ app.route('/')
   .post()
   .put()
   .delete();
+
+// sample authenticating
+app.get('/restricted', function(req, res) {
+  if(req.session.user){
+    //user is authenticated
+    res.render('privateFile');
+  } else {
+    //redirect user to login
+    res.redirect(302, '/login');
+  }
+});
+app.post('/signup', function(req, res, next){
+  if (req.session.isAuthenticated) {
+    res.redirect(302, '/');
+  } else {
+    new User({username: req.body.username}).fetch().then(function(found) {
+      if (found) {
+        res.redirect(302, '/login');
+      } else {
+        var salt = bcrypt.genSaltSync(10);
+        var hash = bcrypt.hashSync(req.body.password, salt);
+        var user = new User({
+          username: req.body.username,
+          password: hash
+        });
+        user.save().then(function(user){
+          req.session.regenerate(function(error){
+            req.session.isAuthenticated = true;
+            req.session.user_id = user.id;
+            res.redirect(302, '/');
+          });
+
+        });
+      }
+    });
+  }
+});
 
 
 app.listen(8000, function(){
